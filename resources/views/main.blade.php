@@ -3,7 +3,7 @@
     @endguest
 
     @auth
-        <div style="margin-left: 20px" class="card bg-base-100 w-96 shadow-sm">
+        <div style="margin-left: 20px" class="card bg-base-100 w-96 shadow-sm mt-4">
             <figure>
                 <img
                     src="{{asset('images/kids.jpg')}}"
