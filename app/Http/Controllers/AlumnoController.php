@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\alumno;
+use App\Models\Alumno;
 use App\Http\Requests\StorealumnoRequest;
 use App\Http\Requests\UpdatealumnoRequest;
-use Illuminate\Support\Facades\Schema; 
+use Illuminate\Support\Facades\Schema;
 
 class AlumnoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostrar listado de alumnos.
      */
     public function index()
     {
@@ -24,7 +24,7 @@ class AlumnoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostrar formulario para crear un alumno.
      */
     public function create()
     {
@@ -32,51 +32,56 @@ class AlumnoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guardar alumno nuevo en la base de datos.
      */
     public function store(StorealumnoRequest $request)
     {
-        // Crear el alumno con los datos del formulario
-        $alumno = new Alumno();
-        $alumno->nombre = $request->nombre;
-        $alumno->apellido = $request->apellido;
-        $alumno->email = $request->email;
-        $alumno->fecha_nacimiento = $request->fecha_nacimiento;
-        $alumno->save();
+        Alumno::create([
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'email' => $request->email,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+        ]);
 
-        return redirect()->route('alumnos.index')
-                        ->with('success', 'Alumno creado correctamente');
+        return redirect()
+            ->route('alumnos.index')
+            ->with('success', 'Alumno creado correctamente');
     }
 
     /**
-     * Display the specified resource.
+     * Mostrar formulario para editar un alumno.
      */
-    public function show(alumno $alumno)
+    public function edit(Alumno $alumno)
     {
-        //
+        return view('alumnos.edit', compact('alumno'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Actualizar un alumno existente.
      */
-    public function edit(alumno $alumno)
+    public function update(UpdatealumnoRequest $request, Alumno $alumno)
     {
-        //
+        $alumno->update([
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'email' => $request->email,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+        ]);
+
+        return redirect()
+            ->route('alumnos.index')
+            ->with('success', 'Alumno actualizado correctamente');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Eliminar un alumno.
      */
-    public function update(UpdatealumnoRequest $request, alumno $alumno)
+    public function destroy(Alumno $alumno)
     {
-        //
-    }
+        $alumno->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(alumno $alumno)
-    {
-        //
+        return redirect()
+            ->route('alumnos.index')
+            ->with('success', 'Alumno eliminado correctamente');
     }
 }

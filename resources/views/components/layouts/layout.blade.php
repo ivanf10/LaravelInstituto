@@ -1,21 +1,22 @@
-
-    <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>Instituto</title>
     @vite(["resources/css/app.css","resources/js/app.js"])
 </head>
-<body>
+
+<body class="min-h-screen flex flex-col">
 
     <x-layouts.header/>
 
     <x-layouts.nav/>
 
-    <main class="bg-main h-main">
-        {{$slot}}
+    <main class="flex-grow overflow-hidden px-4 py-4">
+        {{ $slot }}
     </main>
+
 
     <x-layouts.footer/>
 

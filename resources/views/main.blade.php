@@ -10,10 +10,10 @@
                     alt="kids" />
             </figure>
             <div class="card-body">
-                <h2 class="card-title">Gestion Alumnos</h2>
-                <p>Dar de alta y gestionar alumnos</p>
+                <h2 class="card-title">{{ __('app.gestion-alumnos') }}</h2>
+                <p>{{ __('app.dar-alta-gestionar') }}</p>
                 <div class="card-actions justify-end">
-                    <a href="{{ route('alumnos.index') }}" class="btn btn-primary">Accede ahora</a>
+                    <a href="{{ route('alumnos.index') }}" class="btn btn-primary">{{ __('app.accede-ahora') }}</a>
                 </div>
             </div>
         </div>

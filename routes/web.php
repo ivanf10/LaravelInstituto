@@ -14,6 +14,21 @@ Route::view('noticias', 'noticias');
 
 Route::resource('alumnos', AlumnoController::class);
 
+Route::get('/lang/{locale}', function (string $locale) {
+    if (! in_array($locale, ['en', 'es'])) {
+        abort(400);
+    }
+
+    session()->put('locale', $locale);
+
+    return redirect()->back();
+})->name('lang.switch');
+
+Route::get('/alumnos/{id}/edit', [AlumnoController::class, 'edit'])->name('alumnos.edit');
+Route::put('/alumnos/{id}', [AlumnoController::class, 'update'])->name('alumnos.update');
+Route::resource('alumnos', AlumnoController::class);
+Route::delete('/alumnos/{id}', [AlumnoController::class, 'destroy'])->name('alumnos.destroy');
+
 Route::get('/alumnos', [\App\Http\Controllers\AlumnoController::class, 'index'])
     ->name('alumnos.index');
 
