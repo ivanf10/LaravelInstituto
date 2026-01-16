@@ -9,4 +9,8 @@ return [
         'name' => 'English',
         'flag' => '🇬🇧',
     ],
+    'fr' => [
+        'name' => 'Français',
+        'flag' => '🇫🇷',
+    ],
 ];

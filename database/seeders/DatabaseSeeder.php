@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
         $this::callWith([
             RolesTableSeeder::class,
             UserSeeder::class,
-            AlumnoSeeder::class,
         ]);
     }
 }

@@ -10,13 +10,11 @@
 <body class="min-h-screen flex flex-col">
 
     <x-layouts.header/>
-
     <x-layouts.nav/>
 
-    <main class="flex-grow overflow-hidden px-4 py-4">
+    <main class="flex-grow">
         {{ $slot }}
     </main>
-
 
     <x-layouts.footer/>
 

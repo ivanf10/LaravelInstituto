@@ -10,19 +10,44 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        // 10 PROFESORES
-        User::factory()
-            ->count(10)
-            ->create()
-            ->each(fn ($user) => $user->assignRole('teacher'));
+        // PASSWORD COMÚN
+        $password = Hash::make('12345678');
 
-        // 1 ADMIN
-        $admin = User::factory()->create([
+        // ======================
+        // ADMIN (1)
+        // ======================
+        $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@instituto.com',
-            'password' => Hash::make('admin123'),
+            'password' => $password,
         ]);
 
         $admin->assignRole('admin');
+
+        // ======================
+        // TEACHERS (5)
+        // ======================
+        for ($i = 1; $i <= 5; $i++) {
+            $teacher = User::create([
+                'name' => "Teacher $i",
+                'email' => "teacher$i@instituto.com",
+                'password' => $password,
+            ]);
+
+            $teacher->assignRole('teacher');
+        }
+
+        // ======================
+        // STUDENTS (5)
+        // ======================
+        for ($i = 1; $i <= 5; $i++) {
+            $student = User::create([
+                'name' => "Student $i",
+                'email' => "student$i@instituto.com",
+                'password' => $password,
+            ]);
+
+            $student->assignRole('student');
+        }
     }
 }

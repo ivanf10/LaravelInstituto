@@ -1,4 +1,4 @@
-<header class="relative h-24 w-full overflow-hidden">
+<header class="relative w-full h-24 flex-shrink-0">
 
     <div class="absolute inset-0">
         <img src="/images/fondo_header.png" class="w-full h-full object-cover" alt="header background">
@@ -20,24 +20,38 @@
 
         @php
             $currentLocale = app()->getLocale();
+            $currentLanguage = config('languages')[$currentLocale];
         @endphp
 
-        <div class="flex gap-2">
-            @foreach (config('languages') as $locale => $data)
-                <a href="{{ route('lang.switch', $locale) }}"
-                class="btn btn-sm btn-primary flex items-center gap-1
-                        {{ $currentLocale === $locale ? 'text-black' : 'text-white' }}">
-                    
-                    <span class="text-base leading-none">
-                        {{ $data['flag'] }}
-                    </span>
+        <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-sm btn-primary flex items-center gap-2">
+                <span class="text-base">{{ $currentLanguage['flag'] }}</span>
+                <span class="text-base">{{ $currentLanguage['name'] }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7" />
+                </svg>
+            </label>
 
-                    <span class="text-base">
-                        {{ $data['name'] }}
-                    </span>
-
-                </a>
-            @endforeach
+            <ul tabindex="0"
+                class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 text-black">
+                @foreach (config('languages') as $locale => $data)
+                    <li>
+                        <a href="{{ route('lang.switch', $locale) }}"
+                        class="flex items-center gap-2
+                                {{ $currentLocale === $locale ? 'font-bold' : '' }}">
+                            <span>{{ $data['flag'] }}</span>
+                            <span>{{ $data['name'] }}</span>
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
         </div>
 
             @guest
@@ -55,11 +69,21 @@
                 </span>
 
                 @role('admin')
-                    <span class="text-sm text-red-300">{{ __('app.teacher') }}</span>
+                    <span class="text-sm text-red-300">
+                        {{ __('actions.admin') }}
+                    </span>
                 @endrole
 
                 @role('teacher')
-                    <span class="text-sm text-green-300">{{ __('actions.admin') }}</span>
+                    <span class="text-sm text-green-300">
+                        {{ __('app.teacher') }}
+                    </span>
+                @endrole
+
+                @role('student')
+                    <span class="text-sm text-blue-300">
+                        {{ __('app.student') }}
+                    </span>
                 @endrole
 
                 <button class="btn btn-primary"
