@@ -89,18 +89,18 @@ php artisan db:seed
 # ------------------------------------------------------------
 # 🧱 ESTRUCTURA DEL PROYECTO
 # ------------------------------------------------------------
- app/
- ├── Http/
- │   ├── Controllers/
- │   └── Middleware/
- resources/
- ├── views/
- │   ├── layouts/
- │   ├── components/
- │   └── students/
- lang/
- routes/
- └── web.php
+### app/
+### ├── Http/
+### │   ├── Controllers/
+### │   └── Middleware/
+### resources/
+### ├── views/
+### │   ├── layouts/
+### │   ├── components/
+### │   └── students/
+### lang/
+### routes/
+### └── web.php
 
 # ------------------------------------------------------------
 # 🛠️ COMANDOS PHP ARTISAN UTILIZADOS
