@@ -8,6 +8,9 @@ return [
     'about' => 'À propos',
     'news' => 'Actualités',
     'contact' => 'Contact',
+    'learning_laravel' => 'Apprendre Laravel',
+    'tolearn_laravel' => 'Application pour apprendre Laravel',
+    'register_to_access' => 'Inscrivez-vous pour accéder aux options',
     'all_rights_reserved' => 'Tous droits réservés',
 
     'admin' => 'Administrateur',
